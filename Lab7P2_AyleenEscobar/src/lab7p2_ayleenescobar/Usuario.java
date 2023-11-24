@@ -12,7 +12,7 @@ public class Usuario {
         this.name = name;
         this.user = user;
         this.password = password;
-        this.Saldo_Compras = Saldo_Compras;
+        this.Saldo_Compras = 0;
     }
 
     public String getName() {

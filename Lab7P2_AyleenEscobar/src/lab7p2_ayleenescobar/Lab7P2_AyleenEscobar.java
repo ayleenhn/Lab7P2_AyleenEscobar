@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.io.*;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
 
@@ -537,25 +539,13 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        if (jTF_user.getText().isEmpty() || jPF_user.getText().isEmpty()) {
+        if (jTF_admin.getText().isEmpty() || jPF_admin.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llene las casillas.");  
         }else{
-            boolean siesta=false;
-            for (Usuario usuario : usuarios) {
-                if (usuario.getUser().equals(jTF_admin.getText()) && usuario.getPassword().equals(jPF_admin.getText())) {
-                   usuarioEnSesion = usuario; 
-                   siesta=true;
-                   break;
-                }
-            }
-            if (siesta) {
-                try {
-                    guardarUsuario(usuarioEnSesion);
-                } catch (IOException e) {
-                }
+            if (jTF_admin.getText().equals("admin") && jPF_admin.getText().equals("admin")) {
                 JOptionPane.showMessageDialog(this, "Bienvenido!!");
                 jP_Inicia_Sadmin.setVisible(false);
-                jP_dentroUser.setVisible(true);
+                jP_admin.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
             }
@@ -586,19 +576,37 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Llene las casillas.");  
         }else{
            usuarios.add(new Usuario(jTF_nameUser.getText(), jTF_User.getText(), jPF_Password.getText(), 0));
-           JOptionPane.showMessageDialog(this, "Felicidades, se ha creado su cuenta con exito."); 
+           AdministrarUsuarios au=new AdministrarUsuarios("./Usuarios.txt");
+            au.cargarArchivo();
+            Usuario u= new Usuario(jTF_user.getText(), jTF_User.getText(), jPF_Password.getText(), 0);
+            au.getlistaUsuarios().add(u);        
+            try {
+                au.escribirArchivo();
+            } catch (IOException ex) {
+                Logger.getLogger(Lab7P2_AyleenEscobar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           JOptionPane.showMessageDialog(this, "Felicidades, se ha creado su cuenta con exito.");
+           
         }
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-        if (jTF_admin.getText().isEmpty() || jPF_admin.getText().isEmpty()) {
+        if (jTF_user.getText().isEmpty() || jPF_user.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llene las casillas.");  
         }else{
-            if (jTF_admin.getText().equals("admin") && jPF_admin.getText().equals("admin")) {
+            boolean siesta=false;
+            for (Usuario usuario : usuarios) {
+                if (usuario.getUser().equals(jTF_user.getText()) && usuario.getPassword().equals(jPF_user.getText())) {
+                   usuarioEnSesion = usuario; 
+                   siesta=true;
+                   break;
+                }
+            }
+            if (siesta) {
                 JOptionPane.showMessageDialog(this, "Bienvenido!!");
                 jP_Inicia_Sadmin.setVisible(false);
-                jP_admin.setVisible(true);
+                jP_dentroUser.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
             }
@@ -639,16 +647,7 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
             }
         });
     }
-    public static void guardarUsuario(Usuario usuario) throws IOException {
-        BufferedWriter bw = null;
-        try{
-            bw = new BufferedWriter(new FileWriter("./Usuarios.txt", true));
-            bw.write(usuario.getName() + "," + usuario.getUser() + "," + usuario.getPassword() + "," + usuario.getSaldo_Compras());
-            bw.newLine();
-        } catch (IOException e) {
-        }
-        bw.close();
-    }
+    
     private ArrayList<Usuario> usuarios= new ArrayList();
     private ArrayList<Restaurante> Restaurante= new ArrayList();
     private Usuario usuarioEnSesion;

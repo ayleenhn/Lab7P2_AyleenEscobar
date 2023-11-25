@@ -11,10 +11,11 @@ public class Restaurante {
     public Restaurante() {
     }
 
-    public Restaurante(String nombre, String ubicacion, ArrayList<Producto> productos) {
+    public Restaurante(String nombre, String ubicacion, ArrayList<Producto> productos, double Saldo_Ventas) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.productos = productos;
+        this.Saldo_Ventas = Saldo_Ventas;
     }
 
     public String getNombre() {
@@ -39,6 +40,14 @@ public class Restaurante {
 
     public void setProductos(ArrayList<Producto> productos) {
         this.productos = productos;
+    }
+
+    public double getSaldo_Ventas() {
+        return Saldo_Ventas;
+    }
+
+    public void setSaldo_Ventas(double Saldo_Ventas) {
+        this.Saldo_Ventas = Saldo_Ventas;
     }
 
     @Override

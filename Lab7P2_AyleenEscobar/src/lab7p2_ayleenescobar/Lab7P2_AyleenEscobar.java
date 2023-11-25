@@ -60,6 +60,7 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         jList4 = new javax.swing.JList<>();
+        jButton12 = new javax.swing.JButton();
         jP_InicioUsuario = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -305,18 +306,23 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(jList4);
 
+        jButton12.setText("Agregar Restaurante ");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton11)
-                .addGap(19, 19, 19))
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jButton12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton11)
+                        .addGap(19, 19, 19))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(28, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,7 +330,9 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButton11)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton11)
+                    .addComponent(jButton12))
                 .addGap(21, 21, 21))
         );
 
@@ -530,6 +538,8 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         jP_Arboles_User.setBackground(new java.awt.Color(153, 102, 0));
         jP_Arboles_User.setForeground(new java.awt.Color(204, 153, 0));
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Restaurante");
+        jTree3.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane3.setViewportView(jTree3);
 
         javax.swing.GroupLayout jP_Arboles_UserLayout = new javax.swing.GroupLayout(jP_Arboles_User);
@@ -793,8 +803,8 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         if (jTF_nameUser.getText().isEmpty() ||jTF_User.getText().isEmpty()|| jPF_Password.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llene las casillas.");  
         }else{
-           usuarios.add(new Usuario(jTF_nameUser.getText(), jTF_User.getText(), jPF_Password.getText(), 0));
-           AdministrarUsuarios au=new AdministrarUsuarios("./Usuarios.txt");
+            usuarios.add(new Usuario(jTF_nameUser.getText(), jTF_User.getText(), jPF_Password.getText(), 0));
+            AdministrarUsuarios au=new AdministrarUsuarios("./Usuarios.txt");
             au.cargarArchivo();
             Usuario u= new Usuario(jTF_user.getText(), jTF_User.getText(), jPF_Password.getText(), 0);
             au.getlistaUsuarios().add(u);        
@@ -812,18 +822,14 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jTF_user.getText().isEmpty() || jPF_user.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llene las casillas.");  
-        }else{
-            boolean siesta=false;
-            for (Usuario usuario : usuarios) {
-                if (usuario.getUser().equals(jTF_user.getText()) && usuario.getPassword().equals(jPF_user.getText())) {
-                   usuarioEnSesion = usuario; 
-                   siesta=true;
-                   break;
-                }
-            }
-            if (siesta) {
+        } else {
+            AdministrarUsuarios adminUsuarios = new AdministrarUsuarios("./Usuarios.txt");
+            adminUsuarios.cargarArchivo();
+            Usuario usuarioEnSesion = adminUsuarios.autenticarUsuario(jTF_user.getText(), jPF_user.getText());
+
+            if (usuarioEnSesion != null) {
                 JOptionPane.showMessageDialog(this, "Bienvenido!!");
-                jP_Inicia_Sadmin.setVisible(false);
+                jP_Inicia_sesion.setVisible(false);
                 jP_dentroUser.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
@@ -878,6 +884,7 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

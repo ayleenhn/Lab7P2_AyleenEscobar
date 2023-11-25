@@ -82,4 +82,13 @@ public class AdministrarUsuarios {
             sc.close();
         }
     }
+    
+    public Usuario autenticarUsuario(String user, String password) {
+    for (Usuario usuario : listaUsuarios) {
+        if (usuario.getUser().equals(user) && usuario.getPassword().equals(password)) {
+            return usuario;
+        }
+    }
+    return null;
+}
 }

@@ -1,9 +1,13 @@
 
 package lab7p2_ayleenescobar;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class Usuario {
     private String name, user, password;
     private double Saldo_Compras;
+    private ArrayList<Compra> compras;
 
     public Usuario() {
     }
@@ -13,6 +17,7 @@ public class Usuario {
         this.user = user;
         this.password = password;
         this.Saldo_Compras = 0;
+        this.compras = new ArrayList<>();
     }
 
     public String getName() {
@@ -45,6 +50,14 @@ public class Usuario {
 
     public void setSaldo_Compras(double Saldo_Compras) {
         this.Saldo_Compras = Saldo_Compras;
+    }
+
+    public ArrayList<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(ArrayList<Compra> compras) {
+        this.compras = compras;
     }
 
     @Override

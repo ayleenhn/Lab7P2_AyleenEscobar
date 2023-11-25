@@ -3,6 +3,8 @@ package lab7p2_ayleenescobar;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.io.*;
+import java.util.Scanner;
 
 public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
 
@@ -57,20 +59,21 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jP_Inicia_sesion = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTF_user = new javax.swing.JTextField();
+        jPF_user = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jP_Crear_Cuenta = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        jTF_User = new javax.swing.JTextField();
+        jTF_nameUser = new javax.swing.JTextField();
+        jPF_Password = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jP_dentroUser = new javax.swing.JPanel();
 
         jScrollPane3.setViewportView(jTree3);
 
@@ -313,6 +316,11 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         jLabel4.setText("Usuario");
 
         jButton3.setText("Inicia sesión");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jP_Inicia_sesionLayout = new javax.swing.GroupLayout(jP_Inicia_sesion);
         jP_Inicia_sesion.setLayout(jP_Inicia_sesionLayout);
@@ -327,12 +335,12 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                         .addGap(210, 210, 210)
                         .addComponent(jLabel4)
                         .addGap(10, 10, 10)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTF_user, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_Inicia_sesionLayout.createSequentialGroup()
                         .addGap(190, 190, 190)
                         .addComponent(jLabel3)
                         .addGap(11, 11, 11)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPF_user, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jP_Inicia_sesionLayout.createSequentialGroup()
                         .addGap(270, 270, 270)
                         .addComponent(jButton3)))
@@ -346,11 +354,11 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(jP_Inicia_sesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTF_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jP_Inicia_sesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPF_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(jButton3)
                 .addContainerGap(121, Short.MAX_VALUE))
@@ -363,18 +371,6 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Crear cuenta");
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -389,36 +385,38 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         jLabel8.setText("Contraseña:");
 
         jButton6.setText("Crear cuenta");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jP_Crear_CuentaLayout = new javax.swing.GroupLayout(jP_Crear_Cuenta);
         jP_Crear_Cuenta.setLayout(jP_Crear_CuentaLayout);
         jP_Crear_CuentaLayout.setHorizontalGroup(
             jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_Crear_CuentaLayout.createSequentialGroup()
-                .addGap(237, 237, 237)
-                .addComponent(jButton6)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jP_Crear_CuentaLayout.createSequentialGroup()
                 .addGroup(jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jP_Crear_CuentaLayout.createSequentialGroup()
                         .addGap(249, 249, 249)
                         .addComponent(jLabel5))
                     .addGroup(jP_Crear_CuentaLayout.createSequentialGroup()
-                        .addGap(186, 186, 186)
+                        .addGap(202, 202, 202)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTF_nameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_Crear_CuentaLayout.createSequentialGroup()
                         .addGroup(jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTF_User)
+                            .addComponent(jPF_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jP_Crear_CuentaLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jP_Crear_CuentaLayout.createSequentialGroup()
-                                .addGroup(jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(214, Short.MAX_VALUE))
+                                .addGap(12, 12, 12)
+                                .addComponent(jButton6)))))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
         jP_Crear_CuentaLayout.setVerticalGroup(
             jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,18 +426,32 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jTF_nameUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(jTF_User, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jP_Crear_CuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                    .addComponent(jPF_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(jButton6)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
+        );
+
+        jP_dentroUser.setBackground(new java.awt.Color(255, 255, 255));
+        jP_dentroUser.setPreferredSize(new java.awt.Dimension(663, 436));
+
+        javax.swing.GroupLayout jP_dentroUserLayout = new javax.swing.GroupLayout(jP_dentroUser);
+        jP_dentroUser.setLayout(jP_dentroUserLayout);
+        jP_dentroUserLayout.setHorizontalGroup(
+            jP_dentroUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 663, Short.MAX_VALUE)
+        );
+        jP_dentroUserLayout.setVerticalGroup(
+            jP_dentroUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 436, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -472,6 +484,11 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jP_admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jP_dentroUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,18 +518,15 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jP_admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jP_dentroUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
@@ -523,13 +537,25 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        if (jTF_admin.getText().isEmpty() || jPF_admin.getText().isEmpty()) {
+        if (jTF_user.getText().isEmpty() || jPF_user.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llene las casillas.");  
         }else{
-            if (jTF_admin.getText().equals("admin") && jPF_admin.getText().equals("admin")) {
+            boolean siesta=false;
+            for (Usuario usuario : usuarios) {
+                if (usuario.getUser().equals(jTF_admin.getText()) && usuario.getPassword().equals(jPF_admin.getText())) {
+                   usuarioEnSesion = usuario; 
+                   siesta=true;
+                   break;
+                }
+            }
+            if (siesta) {
+                try {
+                    guardarUsuario(usuarioEnSesion);
+                } catch (IOException e) {
+                }
                 JOptionPane.showMessageDialog(this, "Bienvenido!!");
                 jP_Inicia_Sadmin.setVisible(false);
-                jP_admin.setVisible(true);
+                jP_dentroUser.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
             }
@@ -553,6 +579,31 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         jP_InicioUsuario.setVisible(false);
         jP_Inicia_sesion.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        if (jTF_nameUser.getText().isEmpty() ||jTF_User.getText().isEmpty()|| jPF_Password.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Llene las casillas.");  
+        }else{
+           usuarios.add(new Usuario(jTF_nameUser.getText(), jTF_User.getText(), jPF_Password.getText(), 0));
+           JOptionPane.showMessageDialog(this, "Felicidades, se ha creado su cuenta con exito."); 
+        }
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        if (jTF_admin.getText().isEmpty() || jPF_admin.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Llene las casillas.");  
+        }else{
+            if (jTF_admin.getText().equals("admin") && jPF_admin.getText().equals("admin")) {
+                JOptionPane.showMessageDialog(this, "Bienvenido!!");
+                jP_Inicia_Sadmin.setVisible(false);
+                jP_admin.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+            }
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -588,9 +639,19 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
             }
         });
     }
-
+    public static void guardarUsuario(Usuario usuario) throws IOException {
+        BufferedWriter bw = null;
+        try{
+            bw = new BufferedWriter(new FileWriter("./Usuarios.txt", true));
+            bw.write(usuario.getName() + "," + usuario.getUser() + "," + usuario.getPassword() + "," + usuario.getSaldo_Compras());
+            bw.newLine();
+        } catch (IOException e) {
+        }
+        bw.close();
+    }
     private ArrayList<Usuario> usuarios= new ArrayList();
     private ArrayList<Restaurante> Restaurante= new ArrayList();
+    private Usuario usuarioEnSesion;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -611,7 +672,9 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPasswordField jPF_Password;
     private javax.swing.JPasswordField jPF_admin;
+    private javax.swing.JPasswordField jPF_user;
     private javax.swing.JPanel jP_Arboles_Admin;
     private javax.swing.JPanel jP_Arboles_User;
     private javax.swing.JPanel jP_Crear_Cuenta;
@@ -619,20 +682,19 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
     private javax.swing.JPanel jP_Inicia_sesion;
     private javax.swing.JPanel jP_InicioUsuario;
     private javax.swing.JPanel jP_admin;
+    private javax.swing.JPanel jP_dentroUser;
     private javax.swing.JPanel jP_incio;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTF_User;
     private javax.swing.JTextField jTF_admin;
+    private javax.swing.JTextField jTF_nameUser;
+    private javax.swing.JTextField jTF_user;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTree jTree1;
     private javax.swing.JTree jTree2;
     private javax.swing.JTree jTree3;

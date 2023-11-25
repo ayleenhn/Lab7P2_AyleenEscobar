@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.tree.DefaultTreeModel;
 
 public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
 
@@ -20,6 +21,7 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
         jP_Inicia_sesion.setVisible(false);
         jP_InicioUsuario.setVisible(false);
         jP_admin.setVisible(false);
+        jP_dentroUser.setVisible(false);
         jP_incio.setVisible(true);
     }
 
@@ -245,11 +247,6 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane5.setViewportView(jList2);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -271,11 +268,6 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
 
         jTabbedPane6.addTab("Datos", jPanel4);
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane6.setViewportView(jList3);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -299,11 +291,6 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
 
         jButton11.setText("Eliminar Restaurante");
 
-        jList4.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane7.setViewportView(jList4);
 
         jButton12.setText("Agregar Restaurante ");
@@ -814,7 +801,9 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                 Logger.getLogger(Lab7P2_AyleenEscobar.class.getName()).log(Level.SEVERE, null, ex);
             }
            JOptionPane.showMessageDialog(this, "Felicidades, se ha creado su cuenta con exito.");
-           
+           ArbolResta();
+           jP_dentroUser.setVisible(true);
+           jP_Crear_Cuenta.setVisible(false);
         }
     }//GEN-LAST:event_jButton6MouseClicked
 
@@ -835,6 +824,7 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
             }
         }
+        ArbolResta();
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -875,7 +865,10 @@ public class Lab7P2_AyleenEscobar extends javax.swing.JFrame {
             }
         });
     }
-    
+    public void ArbolResta() {
+        AdministrarRestaurantes aR = new AdministrarRestaurantes("./Restaurante.txt");
+        DefaultTreeModel modeloArbolR = aR.arbolRest();
+    }
     private ArrayList<Usuario> usuarios= new ArrayList();
     private ArrayList<Restaurante> Restaurante= new ArrayList();
     private Usuario usuarioEnSesion;

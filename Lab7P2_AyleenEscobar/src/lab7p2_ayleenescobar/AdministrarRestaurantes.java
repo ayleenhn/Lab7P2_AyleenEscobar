@@ -4,6 +4,8 @@ package lab7p2_ayleenescobar;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class AdministrarRestaurantes {
     private ArrayList<Restaurante> listaRestaurantes = new ArrayList<>();
@@ -93,5 +95,17 @@ public class AdministrarRestaurantes {
             }
         }
         return null;
+    }
+    
+    public DefaultTreeModel arbolRest() {
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Restaurantes");
+        for (Restaurante restaurante : listaRestaurantes) {
+            DefaultMutableTreeNode restauranteNode = new DefaultMutableTreeNode(restaurante.getNombre());
+            for (Producto producto : restaurante.getProductos()) {
+                DefaultMutableTreeNode productoNode = new DefaultMutableTreeNode(producto.getNombre());
+                restauranteNode.add(productoNode);
+            }
+            root.add(restauranteNode);
+        }return new DefaultTreeModel(root);
     }
 }
